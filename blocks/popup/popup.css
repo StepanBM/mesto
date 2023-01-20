@@ -10,9 +10,3 @@
   display: none;
   box-sizing: border-box;
 }
-
-@media screen and (max-width: 580px) {
-  .popup {
-  padding-top: 123px;
-  }
-}
