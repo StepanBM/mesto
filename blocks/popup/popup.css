@@ -7,6 +7,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  display: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.5s linear;
+  z-index: 3;
 }
