@@ -7,6 +7,8 @@
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
 
+@import url(../blocks/main/main.css);
+
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__contact/profile__contact.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
@@ -37,6 +39,7 @@
 @import url(../blocks/popup/__cancel/popup__cancel.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 
+@import url(../blocks/popup/_black/popup_black.css);
 @import url(../blocks/popup/__images/popup__images.css);
 @import url(../blocks/popup/__photos/popup__photos.css);
 @import url(../blocks/popup/__signature/popup__signature.css);
