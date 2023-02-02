@@ -111,18 +111,18 @@ const initialCards = [
 //Вставка изначального массива карточек
   initialCards.forEach(function (item) {
 
-    const card = decorationCard(item);
+    const cardArray = decorationCard(item);
 
-    cardsBlock.append(card);
+    cardsBlock.append(cardArray);
   })
 
 //Добавление новых карточек на сайт
   function createNewCard(evt) {
     evt.preventDefault();
 
-    const card = decorationCard({name: popupInputTitle.value, link: popupInputLink.value});
+    const cardNew = decorationCard({name: popupInputTitle.value, link: popupInputLink.value});
 
-    cardsBlock.prepend(card);
+    cardsBlock.prepend(cardNew);
 }
 popupCardsForm.addEventListener('submit', createNewCard)
 
@@ -132,18 +132,18 @@ function decorationCard(item) {
     card.querySelector('.element__item').src = item.link;
     card.querySelector('.element__title').textContent = item.name;
     card.querySelector('.element__item').alt = item.name;
-//Удаление карточки
+ //Удаление карточки
     card.querySelector('.element__button-cancel').addEventListener('click', () => {
         card.remove();
      })
-//Выставление лайка
+ //Выставление лайка
      card.querySelector('.element__button').addEventListener('click', function (evt) {
         evt.target.classList.toggle('element__button_active');
      });
-//Условие для вызова popup для увелечинным изображением и подписью к ней
+ //Условие для вызова popup для увелечинным изображением и подписью к ней
      card.querySelector('.element__item').addEventListener('click', openPopup);
 
-//Вставка изображения и подписи к нему (увеличение фотографий)
+ //Вставка изображения и подписи к нему (увеличение фотографий)
      card.querySelector('.element__item').addEventListener('click', () => {
 
         popupFotophotos.src=item.link;

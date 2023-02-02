@@ -14,6 +14,6 @@
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
-  transition: opacity 0.5s linear;
+  transition: visibility 0.5s, opacity 0.5s linear;
   z-index: 3;
 }
