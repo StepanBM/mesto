@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="pages/index.css">
+  <link rel="stylesheet" href="./pages/index.css">
   <title>Место</title>
 </head>
 <body>
@@ -44,36 +44,36 @@
     </footer>
     <div class="popup" id="popup-profil">
       <div class="popup__container">
-        <button class="popup__cancel popup__cancel_type_profile" type="button" aria-label="Закрыть"></button>
+        <button class="popup__cancel" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__profil">Редактировать профиль</h2>
         <form class="popup__form popup__form_type_profile" name="profile">
         <input class="popup__input popup__input_type_name" type="text" name="firstname" placeholder="Имя" required>
         <input class="popup__input popup__input_type_professia" type="text" name="information" placeholder="Профессия" required>
-        <button class="popup__submit popup__submit_type_save" type="submit">Сохранить</button>
+        <button class="popup__submit" type="submit">Сохранить</button>
       </form>
       </div>
     </div>
 
     <div class="popup" id="popup-card">
         <div class="popup__container">
-          <button class="popup__cancel popup__cancel_type_cards" type="button" aria-label="Закрыть"></button>
+          <button class="popup__cancel" type="button" aria-label="Закрыть"></button>
           <h2 class="popup__profil">Новое место</h2>
           <form class="popup__form popup__form_type_cards" name="profile">
           <input class="popup__input popup__input_type_title" type="text" name="firstname" placeholder="Название">
           <input class="popup__input popup__input_type_link" type="text" name="information" placeholder="Ссылка на картинку">
-          <button class="popup__submit popup__submit_type_create" type="submit">Создать</button>
+          <button class="popup__submit" type="submit">Создать</button>
         </form>
         </div>
       </div>
       
       <div class="popup popup_black" id="popup-foto">
         <figure class="popup__images">
-           <button class="popup__cancel popup__cancel_type_foto" type="button" aria-label="Закрыть"></button>
+           <button class="popup__cancel" type="button" aria-label="Закрыть"></button>
             <img class="popup__photos">
             <figcaption class="popup__signature"></figcaption>
         </figure>
     </div>
   </div>
-  <script src="index.js"></script>
+  <script src="./scripts/index.js"></script>
 </body>
 </html>
