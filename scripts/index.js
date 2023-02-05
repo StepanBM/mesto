@@ -139,10 +139,11 @@ function decorationCard(item) {
      });
  //Условие для вызова popup и вставка изображения и подписи к нему (увеличение фотографий)
      card.querySelector('.element__item').addEventListener('click', function () {
-      openPopup(popupFotoElement);
       popupFotophotos.src=item.link;
       popupFotoSignature.textContent=item.name;
       popupFotophotos.alt=item.name;
+
+      openPopup(popupFotoElement);
     });
 
     return card;
