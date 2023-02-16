@@ -42,14 +42,25 @@
     <footer class="footer">
       <p class="footer__signature">&copy; 2020 Mesto Russia</p>
     </footer>
+
     <div class="popup" id="popup-profil">
       <div class="popup__container">
         <button class="popup__cancel" type="button" aria-label="Закрыть"></button>
         <h2 class="popup__profil">Редактировать профиль</h2>
-        <form class="popup__form popup__form_type_profile" name="profile">
-        <input class="popup__input popup__input_type_name" type="text" name="firstname" placeholder="Имя" required>
-        <input class="popup__input popup__input_type_professia" type="text" name="information" placeholder="Профессия" required>
-        <button class="popup__submit" type="submit">Сохранить</button>
+        <form class="popup__form popup__form_type_profile" name="profile" novalidate>
+        <input class="popup__input popup__input_type_name" type="text" placeholder="Имя" 
+        id="firstname"
+        minlength="2" 
+        maxlength="40" 
+        required>
+        <span class="popup__input-error"></span>
+        <input class="popup__input popup__input_type_professia" type="text" placeholder="Профессия" 
+        id="information"
+        minlength="2" 
+        maxlength="200" 
+        required>
+        <span class="popup__input-error"></span>
+        <button class="popup__submit" name="submit" type="submit" disabled>Сохранить</button>
       </form>
       </div>
     </div>
@@ -58,10 +69,18 @@
         <div class="popup__container">
           <button class="popup__cancel" type="button" aria-label="Закрыть"></button>
           <h2 class="popup__profil">Новое место</h2>
-          <form class="popup__form popup__form_type_cards" name="profile">
-          <input class="popup__input popup__input_type_title" type="text" name="firstname" placeholder="Название">
-          <input class="popup__input popup__input_type_link" type="text" name="information" placeholder="Ссылка на картинку">
-          <button class="popup__submit" type="submit">Создать</button>
+          <form class="popup__form popup__form_type_cards" name="cards" novalidate>
+          <input class="popup__input popup__input_type_title" type="text" placeholder="Название" 
+          id="firstname"
+          minlength="2" 
+          maxlength="30" 
+          required>
+          <span class="popup__input-error"></span>
+          <input class="popup__input popup__input_type_link" type="url" placeholder="Ссылка на картинку" 
+          id="information" 
+          required>
+          <span class="popup__input-error"></span>
+          <button class="popup__submit" name="submit" type="submit" disabled>Создать</button>
         </form>
         </div>
       </div>
@@ -74,6 +93,7 @@
         </figure>
     </div>
   </div>
-  <script src="./scripts/index.js"></script>
+  <script defer src="./scripts/validate.js"></script>
+  <script defer src="./scripts/index.js"></script>
 </body>
 </html>

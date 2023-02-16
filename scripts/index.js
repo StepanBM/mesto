@@ -31,14 +31,17 @@ popupProfileBtnOpened.addEventListener('click', function() {
 
   popupInputName.value = profileName.textContent;
   popupInputProfessia.value = profilProfessia.textContent;
+
+  popupProfilForm.submit.removeAttribute('disabled');
 });
 
 //Условие открытия popup для вставки новых карточек
 popupCardsBtnOpened.addEventListener('click', function() {
   openPopup(popupCardsElement);
 
-  popupInputTitle.value = '';
-  popupInputLink.value = '';
+  popupCardsForm.reset();
+
+  popupCardsForm.submit.setAttribute('disabled', 'disabled');
 });
 
 //Открытие popup-ов
@@ -62,9 +65,31 @@ popupFotoElement.querySelector('.popup__cancel').addEventListener('click', funct
 })
 
 //Закрытие popup
-function closePopup(elem) {
-  elem.classList.remove('popup_opened');
+function closePopup(element) {
+  element.classList.remove('popup_opened');
 }
+
+popupFotoElement.addEventListener('click', closePopupClick);
+popupCardsElement.addEventListener('click', closePopupClick);
+popupProfileElement.addEventListener('click', closePopupClick);
+
+//Закрытие попапов по щелчку за его границей
+function closePopupClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopup(popupFotoElement);
+    closePopup(popupCardsElement);
+    closePopup(popupProfileElement);
+  }
+}
+
+//Закрытие попапов при нажатии на "Escape"
+document.addEventListener('keydown', function (evt) {
+  if (evt.key === 'Escape') {
+    closePopup(popupFotoElement);
+    closePopup(popupCardsElement);
+    closePopup(popupProfileElement);
+  }
+});
 
 //Внесение изменений в popup для редеактирования профиля
 function createNewName(evt) {
