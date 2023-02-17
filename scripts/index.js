@@ -47,49 +47,48 @@ popupCardsBtnOpened.addEventListener('click', function() {
 //Открытие popup-ов
 function openPopup(element) {
   element.classList.add('popup_opened');
+  //Навешиваем обработчик событий
+  document.addEventListener('keydown', closeByEscape);
 }
 
-//Условие закрытия popup для редеактирования профиля
-popupProfileElement.querySelector('.popup__cancel').addEventListener('click', function () {
-  closePopup(popupProfileElement);
-})
+// находим все крестики проекта по универсальному селектору
+const closeButtons = document.querySelectorAll('.popup__cancel');
 
-//Условие закрытия popup для вставки новых карточек
-popupCardsElement.querySelector('.popup__cancel').addEventListener('click', function () {
-  closePopup(popupCardsElement);
-})
-
-//Условие закрытия popup с увелечинным изображением и подписью к ней
-popupFotoElement.querySelector('.popup__cancel').addEventListener('click', function () {
-  closePopup(popupFotoElement);
-})
+closeButtons.forEach((button) => {
+  // находим 1 раз ближайший к крестику попап 
+  const popup = button.closest('.popup');
+  // устанавливаем обработчик закрытия на крестик
+  button.addEventListener('click', () => 
+  closePopup(popup)
+  );
+});
 
 //Закрытие popup
 function closePopup(element) {
   element.classList.remove('popup_opened');
+  //Убираем обработчик событий
+  document.removeEventListener('keydown', closeByEscape);
 }
 
-popupFotoElement.addEventListener('click', closePopupClick);
-popupCardsElement.addEventListener('click', closePopupClick);
-popupProfileElement.addEventListener('click', closePopupClick);
+popupFotoElement.addEventListener('mousedown', closePopupClick);
+popupCardsElement.addEventListener('mousedown', closePopupClick);
+popupProfileElement.addEventListener('mousedown', closePopupClick);
 
 //Закрытие попапов по щелчку за его границей
 function closePopupClick(evt) {
   if (evt.target === evt.currentTarget) {
-    closePopup(popupFotoElement);
-    closePopup(popupCardsElement);
-    closePopup(popupProfileElement);
+    closePopup(evt.target);
   }
 }
 
 //Закрытие попапов при нажатии на "Escape"
-document.addEventListener('keydown', function (evt) {
+function closeByEscape(evt) {
   if (evt.key === 'Escape') {
-    closePopup(popupFotoElement);
-    closePopup(popupCardsElement);
-    closePopup(popupProfileElement);
+    //Находим открытый попап
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
   }
-});
+};
 
 //Внесение изменений в popup для редеактирования профиля
 function createNewName(evt) {
