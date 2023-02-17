@@ -2,14 +2,14 @@ const enableValidation = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__submit',
-    inputErrorClass: '`#${inputElement.id} + .popup__input-error`',
+    inputErrorClass: 'popup__input-error',
     errorClass: 'popup__input_type_invalid',
     errorClassActive: 'popup__input-error_active'
   };
 
 //Функция выводит ошибки
 const outputInputError = (formElement, inputElement, errorMessage, obj) => {
-    const errorElement = formElement.querySelector(`#${inputElement.id} + .popup__input-error`);
+    const errorElement = formElement.querySelector(`#${inputElement.id} + .${obj.inputErrorClass}`);
     inputElement.classList.add(obj.errorClass);
     // Заменим содержимое span с ошибкой на переданный параметр
     errorElement.textContent = errorMessage;
@@ -18,7 +18,7 @@ const outputInputError = (formElement, inputElement, errorMessage, obj) => {
   
   //Функция удаляет ошибки
   const deletionInputError = (formElement, inputElement, obj) => {
-    const errorElement = formElement.querySelector(`#${inputElement.id} + .popup__input-error`);
+    const errorElement = formElement.querySelector(`#${inputElement.id} + .${obj.inputErrorClass}`);
     inputElement.classList.remove(obj.errorClass);
     errorElement.classList.remove(obj.errorClassActive);
     errorElement.textContent = '';
