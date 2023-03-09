@@ -1,13 +1,13 @@
 export default class FormValidator {
-    constructor(obj, popupFormElement) {
+    constructor(objValid, popupFormElement) {
       this._popupFormElement = popupFormElement;
 
-        //this._formSelector = obj.formSelector;
-        this._inputSelector = obj.inputSelector;
-        this._submitButtonSelector = obj.submitButtonSelector;
-        this._inputErrorClass = obj.inputErrorClass;
-        this._errorClass = obj.errorClass;
-        this._errorClassActive = obj.errorClassActive;
+        //this._formSelector = objValid.formSelector;
+        this._inputSelector = objValid.inputSelector;
+        this._submitButtonSelector = objValid.submitButtonSelector;
+        this._inputErrorClass = objValid.inputErrorClass;
+        this._errorClass = objValid.errorClass;
+        this._errorClassActive = objValid.errorClassActive;
 
         //Массив инпутов всех попапов
         this._inputData = Array.from(this._popupFormElement.querySelectorAll(this._inputSelector));
