@@ -59,14 +59,14 @@ export default class FormValidator {
   }
 
   resetValidation() {
-    this.toggleFormSubmit();
+    this._toggleFormSubmit();
     this._inputsList.forEach((inputElement) => {
       this._deletionInputError(inputElement)
     });
   }
 
   //Блокировка и разблокировка кнопки
-  toggleFormSubmit = () => {
+  _toggleFormSubmit = () => {
     if (this._hasInvalidInput()) {
       this._buttonElement.setAttribute('disabled', 'disabled');
     } else {
@@ -77,13 +77,13 @@ export default class FormValidator {
   //Добавление слушателя всем полям
   _addEventListeners = () => {
     //Проверка состояния кнопки в самом начале
-    this.toggleFormSubmit();
+    this._toggleFormSubmit();
 
     this._inputsList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
         //Проверка состояния кнопки при изменении любого из полей
-        this.toggleFormSubmit();
+        this._toggleFormSubmit();
       });
     });
   };

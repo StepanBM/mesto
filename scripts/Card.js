@@ -35,13 +35,6 @@ export default class Card {
     return this._element;
   }
 
-  _addLike() {
-    this._likeButton.classList.add('element__button_active');
-  }
-  _deleteLike() {
-    this._likeButton.classList.remove('element__button_active');
-  }
-
   _removeCard() {
     this._element.remove();
   }
@@ -55,11 +48,7 @@ export default class Card {
 
     //Вставка/удаление лайка
     this._likeButton.addEventListener('click', () => {
-      if (this._likeButton.classList.contains('element__button_active')) {
-        this._deleteLike();
-      } else {
-        this._addLike();
-      }
+      this._likeButton.classList.toggle('element__button_active')
     });
 
     //Удаление карточки

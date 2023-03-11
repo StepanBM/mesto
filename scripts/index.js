@@ -34,12 +34,7 @@ popupProfileBtnOpened.addEventListener('click', function () {
   popupInputName.value = profileName.textContent;
   popupInputProfession.value = profilProfession.textContent;
 
-  const formValidatorProfilBtn = new FormValidator(
-    enableValidationForm,
-    popupProfilForm
-  );
-  formValidatorProfilBtn.toggleFormSubmit();
-  formValidatorProfilBtn.resetValidation();
+  formValidatorProfil.resetValidation();
 });
 
 //Условие открытия popup для вставки новых карточек
@@ -48,12 +43,7 @@ popupCardsBtnOpened.addEventListener('click', function () {
 
   popupCardsForm.reset();
 
-  const formValidatorCardBtn = new FormValidator(
-    enableValidationForm,
-    popupCardsForm
-  );
-  formValidatorCardBtn.toggleFormSubmit();
-  formValidatorCardBtn.resetValidation();
+  formValidatorCard.resetValidation();
 });
 
 //Открытие popup-ов
