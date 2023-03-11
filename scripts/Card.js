@@ -1,66 +1,70 @@
-const popupFotoElement = document.querySelector('#popup-foto');
-const popupFotophotos = popupFotoElement.querySelector('.popup__photos');
-const popupFotoSignature = popupFotoElement.querySelector('.popup__signature');
-const closeButtons = document.querySelector('.popup__cancel');
-
 export default class Card {
-    constructor(objCard, templateSelector) {
+  constructor(objCard, templateSelector, handleCardClick) {
+    this._name = objCard.name;
+    this._link = objCard.link;
 
-      this._name = objCard.name;
-      this._link = objCard.link;
+    this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
+  }
 
-      this._templateSelector = templateSelector;
-    }
-
-    //Получаем разметку template 
-    _getTemplate() {
-      const templateElement = document
+  //Получаем разметку template
+  _getTemplate() {
+    const templateElement = document
       .querySelector(this._templateSelector)
-      .content
-      .querySelector('.element')
+      .content.querySelector('.element')
       .cloneNode(true);
 
-      return templateElement;
-    }
+    return templateElement;
+  }
 
-    //Вставляем данные в разметку (массив карточек)
-    generateCard() {
-      this._element = this._getTemplate();
+  //Вставляем данные в разметку (массив карточек)
+  generateCard() {
+    this._element = this._getTemplate();
+    this._cardImage = this._element.querySelector('.element__item');
+    this._likeButton = this._element.querySelector('.element__button');
+    this._cardDeleteBtn = this._element.querySelector('.element__button-cancel');
 
-      //Вызов метода со всеми событиями (клик)
-      this._setEventListeners();
+    //Вызов метода со всеми событиями (клик)
+    this._setEventListeners();
 
-      this._element.querySelector('.element__title').textContent = this._name;
-      this._element.querySelector('.element__item').src = this._link;
+    this._cardImage.src = this._link;
+    this._element.querySelector('.element__title').textContent = this._name;
+    this._cardImage.alt = this._name;
 
-      //Возвращаем элементы всех карточек
-      return this._element;
-    }
+    //Возвращаем элементы всех карточек
+    return this._element;
+  }
 
-    //Открытие попапа с увеличенной картонкой и подписью к ней
-    _handleOpenPopup() {
-      popupFotophotos.src = this._link;
-      popupFotoSignature.textContent = this._name;
-      popupFotoElement.classList.add('popup_opened');
-    }
+  _addLike() {
+    this._likeButton.classList.add('element__button_active');
+  }
+  _deleteLike() {
+    this._likeButton.classList.remove('element__button_active');
+  }
 
-    //Закрытие попапа с увеличенной картонкой и подписью к ней нажатием на крестик
-    _handleClosePopup() {
-      popupFotoElement.src = '';
-      popupFotoElement.classList.remove('popup_opened');
-    }
+  _removeCard() {
+    this._element.remove();
+  }
 
-    //Метод в котором хранятся все обработчики событий
-    _setEventListeners() {
-      //Клик по картинки для увеличения
-      this._element.querySelector('.element__item').addEventListener('click', () => {
-      this._handleOpenPopup();
-      });
-      
-      //Клик на крестик для закрытия
-      closeButtons.addEventListener('click', () => {
-      this._handleClosePopup();
-      });
-    }
+  //Метод в котором хранятся все обработчики событий
+  _setEventListeners() {
+    //Клик по картинки для увеличения
+    this._cardImage.addEventListener('click', () => {
+      this._handleCardClick(this._link, this._name);
+    });
+
+    //Вставка/удаление лайка
+    this._likeButton.addEventListener('click', () => {
+      if (this._likeButton.classList.contains('element__button_active')) {
+        this._deleteLike();
+      } else {
+        this._addLike();
+      }
+    });
+
+    //Удаление карточки
+    this._cardDeleteBtn.addEventListener('click', () => {
+      this._removeCard();
+    });
+  }
 }
-
