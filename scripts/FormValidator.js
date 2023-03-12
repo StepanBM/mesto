@@ -25,7 +25,7 @@ export default class FormValidator {
       `#${inputElement.id} + .${this._inputErrorClass}`
     );
     //Красная линия в инпуте
-    inputElement.classList.add(this.errorClass);
+    inputElement.classList.add(this._errorClass);
     //Вставим в span текст ошибки
     errorElement.textContent = errorMessage;
     //Вывод ошибки на экран
@@ -37,7 +37,7 @@ export default class FormValidator {
     const errorElement = this._popupFormElement.querySelector(
       `#${inputElement.id} + .${this._inputErrorClass}`
     );
-    inputElement.classList.remove(this.errorClass);
+    inputElement.classList.remove(this._errorClass);
     errorElement.classList.remove(this._errorClassActive);
     errorElement.textContent = "";
   };
