@@ -1,0 +1,148 @@
+import './index.css';
+
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import UserInfo from '../components/UserInfo.js';
+
+const popupProfileBtnOpened = document.querySelector('.profile__button-edit');
+
+const popupProfilForm = document.forms['profile'];
+const popupInputName = document.querySelector('.popup__input_type_name');
+const popupInputProfession = document.querySelector('.popup__input_type_professia');
+
+const popupCardsBtnOpened = document.querySelector('.profile__button-add');
+
+const popupCardsForm = document.forms['cards'];
+const popupInputTitle = document.querySelector('.popup__input_type_title');
+const popupInputLink = document.querySelector('.popup__input_type_link');
+
+const cardsBlock = document.querySelector('.elements');
+
+//Массив карточек
+const initialCards = [
+  {
+    name: "Архыз",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+  },
+  {
+    name: "Челябинская область",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
+  },
+  {
+    name: "Иваново",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
+  },
+  {
+    name: "Камчатка",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
+  },
+  {
+    name: "Холмогорский район",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
+  },
+  {
+    name: "Байкал",
+    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
+  },
+];
+
+//Объект для валидации
+const enableValidationForm = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__submit',
+  inputErrorClass: 'popup__input-error',
+  errorClass: 'popup__input_type_invalid',
+  errorClassActive: 'popup__input-error_active',
+};
+
+//Вставка новых карточек
+const createNewCard = (item) => {
+  const card = new Card(item, '.elements__cards', handleCardClick);
+  const cardElement = card.generateCard();
+
+  return cardElement;
+};
+
+//Функция для открытия попапа (увеличение картинки)
+function handleCardClick(link, name) {
+  popupWithImage.open(name, link);
+}
+
+//Отрисовка карточек на странице
+const section = new Section({
+  //Изначальный массив карточек
+  items: initialCards,
+  //Функция для создания и отрисовку карточек
+  renderer: (item) => {
+    //Отрисовка новых карточек
+    section.addItem(createNewCard(item));
+  },
+}, '.elements')
+//Вызов метода для отрисовки массива карточек
+section.renderItems()
+
+//Валидация попапа для добавления карточки
+const formValidatorCard = new FormValidator(
+  enableValidationForm,
+  popupCardsForm
+);
+formValidatorCard.enableValidation();
+
+//Валидация попапа для изменения профиля
+const formValidatorProfil = new FormValidator(
+  enableValidationForm,
+  popupProfilForm
+);
+formValidatorProfil.enableValidation();
+
+//Подстановка данных для редектирования профиля
+const userInfo = new UserInfo({profilName: '.profile__name', profilProfession: '.profile__profession'});
+//Форма для редактирования профиля
+const popupWithCardFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil)
+//Функция с данными для редактирования профиля
+function submitPopupProfil() {
+  userInfo.setUserInfo(popupInputName.value, popupInputProfession.value)
+  popupWithCardFormProfil.close()
+}
+//Функция открытия попапа для редактирования профиля
+popupProfileBtnOpened.addEventListener('click', () => {
+  const userInfoInput = userInfo.getUserInfo();
+  popupInputName.value = userInfoInput.userName;
+  popupInputProfession.value = userInfoInput.userInformation;
+  popupWithCardFormProfil.open();
+  formValidatorProfil.resetValidation();
+})
+//Вызов метода для отправки формы (для профиля)
+popupWithCardFormProfil.setEventListeners();
+
+//Отправка данных добавления карт
+const popupWithCardFormCard = new PopupWithForm('#popup-card', submitPopupCard);
+
+//Функция с данными карты для вставки
+function submitPopupCard() {
+  const newCard = createNewCard({
+    name: popupInputTitle.value, 
+    link: popupInputLink.value,
+  });
+  //Вставка новых карт в начало
+  cardsBlock.prepend(newCard);
+  //Закрытие попапа после добавления карты
+  popupWithCardFormCard.close();
+}
+
+//Открытие попапа при нажатии на кнопку
+popupCardsBtnOpened.addEventListener('click', () => {
+  //Проверка на валидность формы
+  formValidatorCard.resetValidation();
+  popupWithCardFormCard.open();
+})
+//Вызов метода для отправки формы (для карточки)
+popupWithCardFormCard.setEventListeners();
+
+//Увеличение картинки
+const popupWithImage = new PopupWithImage('#popup-foto');
+popupWithImage.setEventListeners();

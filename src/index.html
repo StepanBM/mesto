@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<link rel="stylesheet" href="../src/pages/index.css" />-->
+    <title>Место</title>
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <img class="header__logo" alt="Место Россия" src="<%=require('./images/logo.svg')%>" />
+      </header>
+      <main class="main">
+        <section class="profile">
+          <div class="profile__contact">
+            <img
+              class="profile__avatar"
+              alt="Жак-Ив Кусто"
+              src="<%=require('./images/Jacques-Yves-Cousteau.jpg')%>"
+            />
+            <div class="profile__info">
+              <div class="profile__container">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button
+                  class="profile__button-edit"
+                  type="button"
+                  aria-label="Редактирование профиля"
+                ></button>
+              </div>
+              <p class="profile__profession">Исследователь океана</p>
+            </div>
+          </div>
+          <button
+            class="profile__button-add"
+            type="button"
+            aria-label="Добавление изображений"
+          ></button>
+        </section>
+
+        <section class="elements">
+          <template class="elements__cards">
+            <article class="element">
+              <button
+                class="element__button-cancel"
+                type="button"
+                aria-label="Удалить"
+              ></button>
+              <img class="element__item" />
+              <div class="element__container">
+                <h2 class="element__title"></h2>
+                <button
+                  class="element__button"
+                  type="button"
+                  aria-label="Нравится"
+                ></button>
+              </div>
+            </article>
+          </template>
+        </section>
+      </main>
+      <footer class="footer">
+        <p class="footer__signature">&copy; 2023 Mesto Russia</p>
+      </footer>
+
+      <div class="popup" id="popup-profil">
+        <div class="popup__container">
+          <button
+            class="popup__cancel"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__profil">Редактировать профиль</h2>
+          <form
+            class="popup__form popup__form_type_profile"
+            name="profile"
+            novalidate
+          >
+            <input
+              class="popup__input popup__input_type_name"
+              type="text"
+              placeholder="Имя"
+              id="firstname"
+              minlength="2"
+              maxlength="40"
+              required
+            />
+            <span class="popup__input-error"></span>
+            <input
+              class="popup__input popup__input_type_professia"
+              type="text"
+              placeholder="Профессия"
+              id="information"
+              minlength="2"
+              maxlength="200"
+              required
+            />
+            <span class="popup__input-error"></span>
+            <button class="popup__submit" name="submit" type="submit" disabled>
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup" id="popup-card">
+        <div class="popup__container">
+          <button
+            class="popup__cancel"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__profil">Новое место</h2>
+          <form
+            class="popup__form popup__form_type_cards"
+            name="cards"
+            novalidate
+          >
+            <input
+              class="popup__input popup__input_type_title"
+              type="text"
+              placeholder="Название"
+              id="title"
+              minlength="2"
+              maxlength="30"
+              required
+            />
+            <span class="popup__input-error"></span>
+            <input
+              class="popup__input popup__input_type_link"
+              type="url"
+              placeholder="Ссылка на картинку"
+              id="link"
+              required
+            />
+            <span class="popup__input-error"></span>
+            <button class="popup__submit" name="submit" type="submit" disabled>
+              Создать
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div class="popup popup_black" id="popup-foto">
+        <figure class="popup__images">
+          <button
+            class="popup__cancel"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <img class="popup__photos" />
+          <figcaption class="popup__signature"></figcaption>
+        </figure>
+      </div>
+    </div>
+    <script defer src="../src/pages/index.js" type="module"></script>
+  </body>
+</html>
