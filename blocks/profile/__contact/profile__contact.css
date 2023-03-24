@@ -1,9 +1,0 @@
-.profile__contact {
-  display: flex;
-}
-
-@media screen and (max-width: 672px) {
-  .profile__contact {
-  display: block;
-  }
-}
