@@ -19,4 +19,4 @@
 
 **Проект**
 
-* [Ссылка на макет в проект](https://stepanbm.github.io/mesto/)
+* [Ссылка на проект](https://stepanbm.github.io/mesto/)

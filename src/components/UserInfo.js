@@ -15,7 +15,7 @@ export default class UserInfo {
     }
 
     //Добавлет новые данные о пользователе
-    setUserInfo(name, information) {
+    setUserInfo({name, information}) {
         this._profilNameElement.textContent = name;
         this._profilProfessionElement.textContent = information;
     }

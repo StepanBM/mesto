@@ -102,46 +102,48 @@ formValidatorProfil.enableValidation();
 //Подстановка данных для редектирования профиля
 const userInfo = new UserInfo({profilName: '.profile__name', profilProfession: '.profile__profession'});
 //Форма для редактирования профиля
-const popupWithCardFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil)
+const popupWithFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil)
+const formObj = popupWithFormProfil.getInputValues();
 //Функция с данными для редактирования профиля
 function submitPopupProfil() {
-  userInfo.setUserInfo(popupInputName.value, popupInputProfession.value)
-  popupWithCardFormProfil.close()
+  userInfo.setUserInfo({name: formObj.name = popupInputName.value, information: formObj.information = popupInputProfession.value})
+  popupWithFormProfil.close()
 }
+
 //Функция открытия попапа для редактирования профиля
 popupProfileBtnOpened.addEventListener('click', () => {
   const userInfoInput = userInfo.getUserInfo();
   popupInputName.value = userInfoInput.userName;
   popupInputProfession.value = userInfoInput.userInformation;
-  popupWithCardFormProfil.open();
+  popupWithFormProfil.open();
   formValidatorProfil.resetValidation();
 })
 //Вызов метода для отправки формы (для профиля)
-popupWithCardFormProfil.setEventListeners();
+popupWithFormProfil.setEventListeners();
 
 //Отправка данных добавления карт
-const popupWithCardFormCard = new PopupWithForm('#popup-card', submitPopupCard);
+const popupWithFormCard = new PopupWithForm('#popup-card', submitPopupCard);
 
 //Функция с данными карты для вставки
 function submitPopupCard() {
   const newCard = createNewCard({
-    name: popupInputTitle.value, 
-    link: popupInputLink.value,
+    name: formObj.name = popupInputTitle.value, 
+    link: formObj.link = popupInputLink.value,
   });
   //Вставка новых карт в начало
   cardsBlock.prepend(newCard);
   //Закрытие попапа после добавления карты
-  popupWithCardFormCard.close();
+  popupWithFormCard.close();
 }
 
 //Открытие попапа при нажатии на кнопку
 popupCardsBtnOpened.addEventListener('click', () => {
   //Проверка на валидность формы
   formValidatorCard.resetValidation();
-  popupWithCardFormCard.open();
+  popupWithFormCard.open();
 })
 //Вызов метода для отправки формы (для карточки)
-popupWithCardFormCard.setEventListeners();
+popupWithFormCard.setEventListeners();
 
 //Увеличение картинки
 const popupWithImage = new PopupWithImage('#popup-foto');

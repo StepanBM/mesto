@@ -10,7 +10,7 @@ export default class Section {
 
     //Метод для вставления карточек
   addItem(item) {
-    this._container.append(item);
+    this._container.prepend(item);
   }
 
   //Метод отрисовывает массив карточек

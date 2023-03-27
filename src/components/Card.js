@@ -37,6 +37,12 @@ export default class Card {
 
   _removeCard() {
     this._element.remove();
+    //При удалении экземпляра класса его дополнительно после удаления нужно занулять
+    this._element = null
+  }
+
+  _handleLike() {
+    this._likeButton.classList.toggle('element__button_active')
   }
 
   //Метод в котором хранятся все обработчики событий
@@ -48,7 +54,7 @@ export default class Card {
 
     //Вставка/удаление лайка
     this._likeButton.addEventListener('click', () => {
-      this._likeButton.classList.toggle('element__button_active')
+      this._handleLike();
     });
 
     //Удаление карточки
