@@ -12,7 +12,7 @@ export default class PopupWithForm extends Popup {
     }
 
     //Метод собирает данные всех полей
-    getInputValues() {
+    _getInputValues() {
       this._formValues = {};
       this._popupInput.forEach(input => {
         this._formValues[input.name] = input.value});
@@ -24,7 +24,7 @@ export default class PopupWithForm extends Popup {
       super.setEventListeners();
       this._popupSet.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        this._handleFormSubmit(this.getInputValues());
+        this._handleFormSubmit(this._getInputValues());
       });
     }
 

@@ -103,10 +103,10 @@ formValidatorProfil.enableValidation();
 const userInfo = new UserInfo({profilName: '.profile__name', profilProfession: '.profile__profession'});
 //Форма для редактирования профиля
 const popupWithFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil)
-const formObj = popupWithFormProfil.getInputValues();
+
 //Функция с данными для редактирования профиля
-function submitPopupProfil() {
-  userInfo.setUserInfo({name: formObj.name = popupInputName.value, information: formObj.information = popupInputProfession.value})
+function submitPopupProfil(formObj) {
+  userInfo.setUserInfo({name: formObj.name, information: formObj.information})
   popupWithFormProfil.close()
 }
 
@@ -125,10 +125,10 @@ popupWithFormProfil.setEventListeners();
 const popupWithFormCard = new PopupWithForm('#popup-card', submitPopupCard);
 
 //Функция с данными карты для вставки
-function submitPopupCard() {
+function submitPopupCard(formObj) {
   const newCard = createNewCard({
-    name: formObj.name = popupInputTitle.value, 
-    link: formObj.link = popupInputLink.value,
+    name: formObj.name, 
+    link: formObj.link
   });
   //Вставка новых карт в начало
   cardsBlock.prepend(newCard);
