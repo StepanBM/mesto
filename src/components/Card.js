@@ -41,7 +41,7 @@ export default class Card {
     this._element = null
   }
 
-  _clickBtnLike() {
+  _handleBtnLike() {
     this._likeButton.classList.toggle('element__button_active')
   }
 
@@ -54,7 +54,7 @@ export default class Card {
 
     //Вставка/удаление лайка
     this._likeButton.addEventListener('click', () => {
-      this._clickBtnLike();
+      this._handleBtnLike();
     });
 
     //Удаление карточки

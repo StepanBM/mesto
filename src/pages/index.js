@@ -16,10 +16,6 @@ const popupInputProfession = document.querySelector('.popup__input_type_professi
 const popupCardsBtnOpened = document.querySelector('.profile__button-add');
 
 const popupCardsForm = document.forms['cards'];
-const popupInputTitle = document.querySelector('.popup__input_type_title');
-const popupInputLink = document.querySelector('.popup__input_type_link');
-
-const cardsBlock = document.querySelector('.elements');
 
 //Массив карточек
 const initialCards = [
@@ -106,7 +102,7 @@ const popupWithFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil
 
 //Функция с данными для редактирования профиля
 function submitPopupProfil(formObj) {
-  userInfo.setUserInfo({name: formObj.name, information: formObj.information})
+  userInfo.setUserInfo(formObj)
   popupWithFormProfil.close()
 }
 
@@ -131,7 +127,7 @@ function submitPopupCard(formObj) {
     link: formObj.link
   });
   //Вставка новых карт в начало
-  cardsBlock.prepend(newCard);
+  section.addItem(createNewCard(formObj));
   //Закрытие попапа после добавления карты
   popupWithFormCard.close();
 }
