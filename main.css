@@ -19,8 +19,8 @@
 .element__item{border-radius:10px 10px 0 0;cursor:pointer;display:block;height:282px;position:relative;width:282px}
 .element__container{align-items:center;display:flex;justify-content:space-between}
 .element__title{font-size:24px;font-weight:900;line-height:29px;margin:25px 0 32px 21px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.element__button{background-color:#fff;background-image:url(7913ddfd147a48616b09.svg);background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;margin:0;min-height:19px;min-width:22px;opacity:1;padding:0;transition:opacity .5s linear}.element__button:hover{opacity:.5}
-.element__button_active{background-image:url(e787eeb70bb65b7b453a.svg)}
+.element__like-button{background-color:#fff;background-image:url(7913ddfd147a48616b09.svg);background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;margin:0;min-height:19px;min-width:22px;opacity:1;padding:0;transition:opacity .5s linear}.element__button:hover{opacity:.5}
+.element__like-button_active{background-image:url(e787eeb70bb65b7b453a.svg)}
 .footer{box-sizing:border-box;margin:66px auto 0;max-width:880px;padding-bottom:60px}@media screen and (max-width:920px){.footer{margin-left:19px;margin-top:48px;padding-bottom:36px}}
 .footer__signature{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:320px){.footer__signature{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;box-sizing:border-box;display:flex;height:100%;justify-content:center;left:0;opacity:0;pointer-events:none;position:fixed;right:0;top:0;transition:visibility .5s,opacity .5s linear;visibility:hidden;width:100%;z-index:3}
