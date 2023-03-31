@@ -23,7 +23,7 @@
 .element__button_active{background-image:url(e787eeb70bb65b7b453a.svg)}
 .element__button-counter{color:#000;font-size:13px;font-weight:400;line-height:16px;margin:0}
 .footer{box-sizing:border-box;margin:66px auto 0;max-width:880px;padding-bottom:60px}@media screen and (max-width:920px){.footer{margin-left:19px;margin-top:48px;padding-bottom:36px}}
-.footer__signature{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:320px){.footer__signature{font-size:14px;line-height:17px}}
+.x{color:#545454;font-size:18px;font-weight:400;line-height:22px;margin:0}@media screen and (max-width:320px){.x{font-size:14px;line-height:17px}}
 .popup{align-items:center;background-color:rgba(0,0,0,.5);bottom:0;box-sizing:border-box;display:flex;height:100%;justify-content:center;left:0;opacity:0;pointer-events:none;position:fixed;right:0;top:0;transition:visibility .5s,opacity .5s linear;visibility:hidden;width:100%;z-index:3}
 .popup__container{background:#fff;border-radius:10px;box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;display:block;max-width:430px;padding:34px 36px 37px;position:relative}@media screen and (max-width:580px){.popup__container{max-width:282px;padding:25px 22px}}
 .popup__profil{font-size:24px;font-weight:900;line-height:29px;margin:0 0 54px}@media screen and (max-width:580px){.popup__profil{font-size:18px;line-height:22px;margin-bottom:75px}}
