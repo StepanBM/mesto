@@ -14,8 +14,8 @@ export default class Section {
   }
 
   //Метод отрисовывает массив карточек
-  renderItems() {
-    this._renderedItems.forEach((item) => {
+  renderItems(cards) {
+    cards.forEach((item) => {
       this._renderer(item);
     });
   }

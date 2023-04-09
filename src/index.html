@@ -16,9 +16,10 @@
           <div class="profile__contact">
             <img
               class="profile__avatar"
-              alt="Жак-Ив Кусто"
+              alt="Аватар"
               src="<%=require('./images/Jacques-Yves-Cousteau.jpg')%>"
             />
+            <button class="profile__button"></button>
             <div class="profile__info">
               <div class="profile__container">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -49,11 +50,14 @@
               <img class="element__item" />
               <div class="element__container">
                 <h2 class="element__title"></h2>
+                <div class="element__like">
                 <button
                   class="element__button"
                   type="button"
                   aria-label="Нравится"
                 ></button>
+                <p class="element__counter">0</p>
+                </div>
               </div>
             </article>
           </template>
@@ -72,7 +76,7 @@
           ></button>
           <h2 class="popup__profil">Редактировать профиль</h2>
           <form
-            class="popup__form popup__form_type_profile"
+            class="popup__form"
             name="profile"
             novalidate
           >
@@ -90,7 +94,7 @@
             <input
               class="popup__input popup__input_type_professia"
               type="text"
-              name="information"
+              name="about"
               placeholder="Профессия"
               id="information"
               minlength="2"
@@ -114,7 +118,7 @@
           ></button>
           <h2 class="popup__profil">Новое место</h2>
           <form
-            class="popup__form popup__form_type_cards"
+            class="popup__form"
             name="cards"
             novalidate
           >
@@ -145,6 +149,35 @@
         </div>
       </div>
 
+      <div class="popup" id="popup-avatar">
+        <div class="popup__container">
+          <button
+            class="popup__cancel"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__profil">Обновить аватар</h2>
+          <form
+            class="popup__form"
+            name="avatar"
+            novalidate
+          >
+            <input
+              class="popup__input popup__input_type_link"
+              type="url"
+              name="avatar"
+              placeholder="Аватар"
+              id="avatar"
+              required
+            />
+            <span class="popup__input-error"></span>
+            <button class="popup__submit" name="submit" type="submit" disabled>
+              Сохранить
+            </button>
+          </form>
+        </div>
+      </div>
+
       <div class="popup popup_black" id="popup-foto">
         <figure class="popup__images">
           <button
@@ -155,6 +188,26 @@
           <img class="popup__photos" />
           <figcaption class="popup__signature"></figcaption>
         </figure>
+      </div>
+
+      <div class="popup" id="popup-confirmation">
+        <div class="popup__container">
+          <button
+            class="popup__cancel"
+            type="button"
+            aria-label="Закрыть"
+          ></button>
+          <h2 class="popup__profil">Вы уверены?</h2>
+          <form
+            class="popup__form ddd"
+            name="confirmation"
+            novalidate
+          >
+            <button class="popup__submit" name="submit" type="submit">
+              Да
+            </button>
+          </form>
+        </div>
       </div>
     </div>
     <script defer src="../src/pages/index.js" type="module"></script>

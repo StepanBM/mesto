@@ -1,10 +1,19 @@
 export default class Card {
-  constructor(objCard, templateSelector, handleCardClick) {
-    this._name = objCard.name;
-    this._link = objCard.link;
+  constructor({data, templateSelector, userId, handleCardClick, handleRemoveBtn, addCardLike, deleteCardLike}) {
+    this._name = data.name;
+    this._link = data.link;
+    this._ownerId = data.owner._id;
 
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+    this._handleRemoveBtn = handleRemoveBtn;
+
+    this._userId = userId;
+
+    this._addCardLike = addCardLike;
+    this._deleteCardLike = deleteCardLike;
+
+    this._likes = data.likes;
   }
 
   //Получаем разметку template
@@ -17,12 +26,35 @@ export default class Card {
     return templateElement;
   }
 
+  _purposeBuckets() {
+    if(this._ownerId != this._userId) {
+      this._cardDeleteBtn.classList.add('element__button-cancel_delete')
+    }
+  }
+  
+  countingLike(data) {
+    this._likesCounter.textContent = data.length;
+  }
+
+  addLike() {
+    this._likeButton.classList.add('element__button_active')
+  }
+
+  deleteLike() {
+    this._likeButton.classList.remove('element__button_active')
+  }
+
   //Вставляем данные в разметку (массив карточек)
   generateCard() {
     this._element = this._getTemplate();
     this._cardImage = this._element.querySelector('.element__item');
     this._likeButton = this._element.querySelector('.element__button');
     this._cardDeleteBtn = this._element.querySelector('.element__button-cancel');
+
+    this._likesCounter = this._element.querySelector('.element__counter');
+    this._likesCounter.textContent = this._likes.length;
+
+    this._purposeBuckets()
 
     //Вызов метода со всеми событиями (клик)
     this._setEventListeners();
@@ -35,16 +67,6 @@ export default class Card {
     return this._element;
   }
 
-  _removeCard() {
-    this._element.remove();
-    //При удалении экземпляра класса его дополнительно после удаления нужно занулять
-    this._element = null
-  }
-
-  _handleBtnLike() {
-    this._likeButton.classList.toggle('element__button_active')
-  }
-
   //Метод в котором хранятся все обработчики событий
   _setEventListeners() {
     //Клик по картинки для увеличения
@@ -54,12 +76,18 @@ export default class Card {
 
     //Вставка/удаление лайка
     this._likeButton.addEventListener('click', () => {
-      this._handleBtnLike();
+      if(this._likeButton.classList.contains('element__button_active')) {
+        this._deleteCardLike()
+      } else {
+        this._addCardLike()
+      }
     });
 
     //Удаление карточки
-    this._cardDeleteBtn.addEventListener('click', () => {
-      this._removeCard();
+    this._cardDeleteBtn.addEventListener('click', (evt) => {
+
+      this._handleRemoveBtn(evt);
     });
   }
+
 }

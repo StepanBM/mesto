@@ -1,9 +1,11 @@
 export default class UserInfo {
-    constructor({profilName, profilProfession}) {
+    constructor({profilName, profilProfession, profileAvatar}) {
         //Данные имя пользователя
         this._profilNameElement = document.querySelector(profilName);
         //Данные о пользователе
         this._profilProfessionElement = document.querySelector(profilProfession);
+
+        this._profileAvatarElement = document.querySelector(profileAvatar);
     }
 
     //Метод который возвращает данные о пользоателе
@@ -15,9 +17,10 @@ export default class UserInfo {
     }
 
     //Добавлет новые данные о пользователе
-    setUserInfo({name, information}) {
-        this._profilNameElement.textContent = name;
-        this._profilProfessionElement.textContent = information;
+    setUserInfo(objProfil) {
+        this._profilNameElement.textContent = objProfil.name;
+        this._profilProfessionElement.textContent = objProfil.about;
+        this._profileAvatarElement.src = objProfil.avatar;
     }
 
 }
