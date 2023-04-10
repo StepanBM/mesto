@@ -44,6 +44,13 @@ export default class Card {
     this._likeButton.classList.remove('element__button_active')
   }
 
+  _checkСlicksLike() {
+    const checkLike = this._likes.find(element => element._id===this._userId)
+    if(checkLike){
+      this.addLike()
+    }
+  }
+
   //Вставляем данные в разметку (массив карточек)
   generateCard() {
     this._element = this._getTemplate();
@@ -55,11 +62,8 @@ export default class Card {
     this._likesCounter.textContent = this._likes.length;
 
     this._purposeBuckets()
-    
-    const checkСlicksLike = this._likes.find(element => element._id===this._userId)
-    if(checkСlicksLike){
-      this._likeButton.classList.add('element__button_active')
-    }
+    this._checkСlicksLike()
+
     //Вызов метода со всеми событиями (клик)
     this._setEventListeners();
 
