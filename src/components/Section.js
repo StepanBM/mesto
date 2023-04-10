@@ -15,7 +15,7 @@ export default class Section {
 
   //Метод отрисовывает массив карточек
   renderItems(cards) {
-    cards.forEach((item) => {
+    cards.reverse().forEach((item) => {
       this._renderer(item);
     });
   }

@@ -55,7 +55,11 @@ export default class Card {
     this._likesCounter.textContent = this._likes.length;
 
     this._purposeBuckets()
-
+    
+    const checkСlicksLike = this._likes.find(element => element._id===this._userId)
+    if(checkСlicksLike){
+      this._likeButton.classList.add('element__button_active')
+    }
     //Вызов метода со всеми событиями (клик)
     this._setEventListeners();
 

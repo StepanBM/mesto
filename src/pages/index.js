@@ -9,66 +9,17 @@ import UserInfo from '../components/UserInfo.js';
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import Api from '../components/Api.js';
 
-const popupProfileBtnOpened = document.querySelector('.profile__button-edit');
-
-const popupProfilForm = document.forms['profile'];
-const popupInputName = document.querySelector('.popup__input_type_name');
-const popupInputProfession = document.querySelector('.popup__input_type_professia');
-
-const popupCardsBtnOpened = document.querySelector('.profile__button-add');
-
-const popupCardsForm = document.forms['cards'];
-
-const popupProfileAvatarBtnOpened = document.querySelector('.profile__button');
-
-const popupAvatarForm = document.forms['avatar'];
-
-const popupBtnSave = document.querySelector('.popup__submit');
-
-//Массив карточек
-const initialCards = [
-  {
-    name: "Архыз",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-  },
-  {
-    name: "Челябинская область",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-  },
-  {
-    name: "Иваново",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-  },
-  {
-    name: "Камчатка",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-  },
-  {
-    name: "Холмогорский район",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-  },
-  {
-    name: "Байкал",
-    link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-  },
-];
-
-//Объект для валидации
-const enableValidationForm = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__submit',
-  inputErrorClass: 'popup__input-error',
-  errorClass: 'popup__input_type_invalid',
-  errorClassActive: 'popup__input-error_active',
-};
-
-const renderLoading = (isLoading) => {
-  if(isLoading){
-    popupBtnSave.textContent = 'Сохранение...';
-  } else
-  popupBtnSave.textContent = 'Сохранить';
-}
+import {
+  popupProfileBtnOpened,
+  popupProfilForm,
+  popupCardsBtnOpened,
+  popupCardsForm,
+  popupProfileAvatarBtnOpened,
+  popupAvatarForm,
+  popupConfirmationForm,
+  initialCards,
+  enableValidationForm
+} from '../utils/constants.js';
 
 //Подключение API
 const api = new Api({
@@ -122,6 +73,7 @@ const createNewCard = (data) => {
     })
   }
 });
+
   const cardElement = card.generateCard();
 
   return cardElement;
@@ -162,22 +114,21 @@ const popupWithFormProfil = new PopupWithForm('#popup-profil', submitPopupProfil
 
 //Функция с данными для редактирования профиля
 function submitPopupProfil(data) {
-  renderLoading(true);
+  popupWithFormProfil.renderLoading(true);
   api.changeUserInfo(data).then((res) => {
   userInfo.setUserInfo(res)
   popupWithFormProfil.close()
 }).catch((err) => {
   console.error(err);
 }).finally(() => {
-  renderLoading(false)
+  popupWithFormProfil.renderLoading(false)
 })
 }
 
 //Функция открытия попапа для редактирования профиля
 popupProfileBtnOpened.addEventListener('click', () => {
   const userInfoInput = userInfo.getUserInfo();
-  popupInputName.value = userInfoInput.userName;
-  popupInputProfession.value = userInfoInput.userInformation;
+  popupWithFormProfil.setInputValues(userInfoInput);
   popupWithFormProfil.open();
   formValidatorProfil.resetValidation();
 })
@@ -189,7 +140,7 @@ const popupWithFormCard = new PopupWithForm('#popup-card', submitPopupCard);
 
 //Функция с данными карты для вставки
 function submitPopupCard(formObj) {
-  renderLoading(true);
+  popupWithFormCard.renderLoading(true);
   api.addNewCard({
     name: formObj.name, 
     link: formObj.link
@@ -202,7 +153,7 @@ function submitPopupCard(formObj) {
   }).catch((err) => {
     console.error(err);
   }).finally(() => {
-    renderLoading(false)
+    popupWithFormCard.renderLoading(false)
   });
 }
 
@@ -222,14 +173,14 @@ popupWithImage.setEventListeners();
 //Отправка данных для смены аватарки
 const popupWithFormAvatar = new PopupWithForm('#popup-avatar', submitPopupAvatar);
  function submitPopupAvatar(data) {
-  renderLoading(true);
+  popupWithFormAvatar.renderLoading(true);
   api.changeProfileAvatar(data).then((res) => {
     userInfo.setUserInfo(res);
     popupWithFormAvatar.close();
   }).catch((err) => {
     console.error(err);
   }).finally(() => {
-    renderLoading(false)
+    popupWithFormAvatar.renderLoading(false)
   })
  }
 
@@ -249,7 +200,7 @@ const formValidatorAvatar = new FormValidator(
 );
 formValidatorAvatar.enableValidation();
 
-const popupConfirmationForm = document.forms['confirmation'];
+
 
 const popupWithConfirmation = new PopupWithConfirmation('#popup-confirmation', popupConfirmationForm)
 popupWithConfirmation.setEventListeners()
